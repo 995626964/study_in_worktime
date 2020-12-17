@@ -20,16 +20,17 @@ public class MyThreadPool {
                 // System.out.println("放弃这个任务，不执行");
 
                 // 3.抛异常
-                //try {
-                //    throw new MyException();
-                //} catch (MyException e) {
-                //    e.printStackTrace();
-                //}
+                // 如果抛出的是RuntimeException并且没有捕获它，那么后面的程序不会执行了
+                try {
+                    throw new MyException();
+                } catch (MyException e) {
+                    e.printStackTrace();
+                }
 
                 // 4.放弃工作队列中最旧的，也就是最先加入工作队列的任务，再把这个新任务添加进去。由于不知道怎么停止这个旧任务(runnable)，只能将这个task变为null，达到停止任务的效果。 自己写的版本,结果正确，逻辑不一定正确。
-                Runnable oldestTask=myThreadPool1.workQueue.peek().getTask();
-                System.out.println("放弃了之前最早加入工作队列的"+oldestTask);
-                myThreadPool1.workQueue.peek().setTask(r);
+//                Runnable oldestTask=myThreadPool1.workQueue.peek().getTask();
+//                System.out.println("放弃了之前最早加入工作队列的"+oldestTask);
+//                myThreadPool1.workQueue.peek().setTask(r);
 
             }
 
