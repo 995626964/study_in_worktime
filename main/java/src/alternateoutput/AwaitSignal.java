@@ -39,7 +39,7 @@ public class AwaitSignal extends ReentrantLock {
     }
 
     public void print(String str,Condition condition,Condition nextCondition){
-        for (int i = 0; i <3 ; i++) {
+        for (int i = 0; i <loopNum ; i++) {
             lock();
             try {
                 log.info("{}被阻塞了",condition);

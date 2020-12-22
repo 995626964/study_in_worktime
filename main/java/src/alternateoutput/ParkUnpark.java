@@ -22,12 +22,18 @@ public class ParkUnpark {
         t1.start();
         t2.start();
         t3.start();
-
         LockSupport.unpark(t1);
+
     }
 
     public void print(String str,Thread next){
         for (int i = 0; i <3 ; i++) {
+            try {
+                //保证unpark()先执行
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             LockSupport.park();
             System.out.print(str);
             LockSupport.unpark(next);

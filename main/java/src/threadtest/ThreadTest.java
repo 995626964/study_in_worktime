@@ -51,7 +51,7 @@ public class ThreadTest {
         thread2.start();
         FutureTask<Integer> future = new FutureTask(myThread3);
         Thread thread3 = new Thread(future);
-        thread3.run();
+        thread3.start();
         try {
             System.out.println(future.get());
         } catch (InterruptedException e) {
@@ -59,13 +59,5 @@ public class ThreadTest {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        for (int i = 0; i < 4; i++) {
-            executorService.execute(myThread1);
-        }
-
-        executorService.shutdown();
     }
 }
